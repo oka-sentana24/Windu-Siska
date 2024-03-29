@@ -51,7 +51,7 @@
 {#if !isOpenContent}
   <section
     class="banner px-5 py-5 h-screen"
-    style="background-image: linear-gradient(185deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.57) 100%), url(https://undanganwebmedia.sgp1.digitaloceanspaces.com/withlove/in/2024/01/PHOTO-EDITING-1.jpg) !important; background-position: 40% 50%;
+    style="background-image: url('/src/public/asset/CHE01431.jpg') !important; background-position: 40% 50%;
   background-repeat: no-repeat;
   object-fit: cover;
   background-size: cover;
@@ -85,7 +85,7 @@
     >
       <div
         class="head-content"
-        style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.54) 100%), url(https://undanganwebmedia.sgp1.digitaloceanspaces.com/withlove/in/2024/01/PHOTO-EDITING-13.jpg) !important; background-position: 40% 50%; height: 50vh;
+        style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.54) 100%), url('/src/public/asset/CHE01295.jpg') !important; background-position: 40% 50%; height: 50vh;
       background-size: cover;
       background-repeat: no-repeat;"
       >
@@ -102,20 +102,29 @@
         <div class="p-5">
           <img
             class="w-full"
-            src="https://undanganwebmedia.sgp1.digitaloceanspaces.com/withlove/in/2024/01/PHOTO-EDITING-14.jpg"
+            src="/src/public/asset/CHE01244.jpg"
             alt="Sunset in the mountains"
           />
 
           <div class="px-6 py-4 text-center">
-            <div class="font-bold text-xl mb-2">We Found Love</div>
-            <p class="text-gray-700 text-base">
-              “Ya, pasangan suami-istri, semoga anda tetap disini dan tidak
-              pernah terpisahkan. Semoga anda berdua mencapai hidup yang penuh
-              kebahagiaan. Semoga anda, bermain dengan anak-anak lakimu dan
-              cucu-cucu lakimu, tinggal di rumah ini dengan gembira”
-            </p>
+            <Saos
+              animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
+            >
+              <h1 class="font-bold text-2xl mb-2">We Found Love</h1>
+            </Saos>
 
-            <p>(Rgveda : X.85.42)</p>
+            <Saos
+              animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
+            >
+              <p class="text-gray-700 text-sm">
+                “Ya, pasangan suami-istri, semoga anda tetap disini dan tidak
+                pernah terpisahkan. Semoga anda berdua mencapai hidup yang penuh
+                kebahagiaan. Semoga anda, bermain dengan anak-anak lakimu dan
+                cucu-cucu lakimu, tinggal di rumah ini dengan gembira”
+              </p>
+
+              <p>(Rgveda : X.85.42)</p>
+            </Saos>
           </div>
         </div>
       </div>
@@ -139,7 +148,7 @@
           <div class="flex items-start justify-center py-5">
             <img
               class="rounded-xl w-[50%] h-full object-cover"
-              src="https://undanganwebmedia.sgp1.digitaloceanspaces.com/withlove/in/2024/01/PHOTO-EDITING-5.jpg"
+              src="/src/public/asset/CHE01277.jpg"
               alt="Extra large avatar"
             />
           </div>
@@ -170,7 +179,7 @@
           <div class="flex items-start justify-center py-5">
             <img
               class="rounded-xl w-[50%] h-full object-cover"
-              src="https://undanganwebmedia.sgp1.digitaloceanspaces.com/withlove/in/2024/01/PHOTO-EDITING-6.jpg"
+              src="/src/public/asset/CHE01271.jpg"
               alt="Extra large avatar"
             />
           </div>
@@ -213,7 +222,7 @@
 
       <div class="py-5">
         <div
-          style="background-image:linear-gradient(185deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.57) 100%), url(https://undanganwebmedia.sgp1.digitaloceanspaces.com/withlove/in/2024/01/PHOTO-EDITING-1.jpg) !important; background-position: 40% 50%;
+          style="background-image:linear-gradient(185deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.57) 100%), url('/src/public/asset/CHE01405.jpg') !important; background-position: 40% 50%;
         background-repeat: no-repeat;
         object-fit: cover;
         background-size: cover;
@@ -245,7 +254,7 @@
 
       <div class="py-5">
         <div
-          style="background-image:linear-gradient(185deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.57) 100%), url(https://undanganwebmedia.sgp1.digitaloceanspaces.com/withlove/in/2024/01/PHOTO-EDITING-1.jpg) !important; background-position: 40% 50%;
+          style="background-image:linear-gradient(185deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.57) 100%), url('/src/public/asset/CHE01320.jpg') !important; background-position: 40% 50%;
         background-repeat: no-repeat;
         object-fit: cover;
         background-size: cover;
@@ -289,24 +298,36 @@
   <section>
     <div class="roundedshadow-lg bg-white m-5 rounded-lg">
       <div class="p-5">
-        <img
-          class="w-full rounded-lg"
-          src="https://undanganwebmedia.sgp1.digitaloceanspaces.com/withlove/in/2024/01/PHOTO-EDITING-14.jpg"
-          alt="Sunset in the mountains"
-        />
+        <Saos
+          animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
+        >
+          <img
+            class="w-full rounded-lg"
+            src="/src/public/asset/CHE01430.jpg"
+            alt="Sunset in the mountains"
+          />
+        </Saos>
 
         <div class="px-6 py-4 text-center">
           <div class="font-bold text-xl mb-2">
-            <h1 class="text-2xl">Menuju Hari Bahagia</h1>
+            <Saos
+              animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
+            >
+              <h1 class="text-2xl">Menuju Hari Bahagia</h1>
+            </Saos>
           </div>
-          <p class="text-gray-700 text-base">
-            Waktu berganti begitu cepat, dalam penantian kami yang penuh doa,
-            kami berharap kehadiran dan doa restu seluruh keluarga, sahabat dan
-            saudara terkasih, untuk menjadi saksi ikrar janji suci kami di hari
-            bahagia
-          </p>
+          <Saos
+            animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
+          >
+            <p class="text-gray-700 text-base">
+              Waktu berganti begitu cepat, dalam penantian kami yang penuh doa,
+              kami berharap kehadiran dan doa restu seluruh keluarga, sahabat
+              dan saudara terkasih, untuk menjadi saksi ikrar janji suci kami di
+              hari bahagia
+            </p>
 
-          <p>(Rgveda : X.85.42)</p>
+            <p>(Rgveda : X.85.42)</p>
+          </Saos>
 
           <div class="py-5">
             <div class="flex space-x-1 justify-center">
@@ -337,6 +358,109 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <Saos
+      animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
+    >
+      <h1 class="py-8">Gallery</h1>
+    </Saos>
+
+    <div class="grid grid-cols-1 gap-5">
+      <div class="p-5 sm:p-8">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mb-5 rounded-sm"
+        >
+          <Saos
+            animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
+          >
+            <img
+              src="/src/public/asset/gallery/CHE01185_gallery1.jpeg"
+              alt="gallery 1"
+              class="rounded-lg shadow-lg"
+            />
+          </Saos>
+          <Saos
+            animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
+          >
+            <img
+              src="/src/public/asset/gallery/CHE01195_gallery2.jpeg"
+              alt="gallery 2"
+              class="rounded-lg shadow-lg"
+            />
+          </Saos>
+          <Saos
+            animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
+          >
+            <img
+              src="/src/public/asset/gallery/CHE01200_gallery3.jpeg"
+              alt="gallery 3"
+              class="rounded-lg shadow-lg"
+            />
+          </Saos>
+          <Saos
+            animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
+          >
+            <img
+              src="/src/public/asset/gallery/CHE01220_gallery4.jpeg"
+              alt="gallery 4"
+              class="rounded-lg shadow-lg"
+            />
+          </Saos>
+
+          <Saos
+            animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
+          >
+            <img
+              src="/src/public/asset/gallery/CHE01243_gallery5.jpeg"
+              alt="gallery 5"
+              class="rounded-lg shadow-lg"
+            />
+          </Saos>
+
+          <Saos
+            animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
+          >
+            <img
+              src="/src/public/asset/gallery/CHE01284_gallery6.jpeg"
+              alt="gallery 6"
+              class="rounded-lg shadow-lg"
+            />
+          </Saos>
+
+          <Saos
+            animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
+          >
+            <img
+              src="/src/public/asset/gallery/CHE01305_gallery8.jpeg"
+              alt="gallery 8"
+              class="rounded-lg shadow-lg"
+            />
+          </Saos>
+
+          <Saos
+            animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
+          >
+            <img
+              src="/src/public/asset/gallery/CHE01324_gallery7.jpeg"
+              alt="gallery 7"
+              class="rounded-lg shadow-lg"
+            />
+          </Saos>
+
+          <Saos
+            animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
+          >
+            <img
+              src="/src/public/asset/gallery/CHE01419_gallery9.jpeg"
+              alt="gallery 9"
+              class="rounded-lg shadow-lg"
+            />
+          </Saos>
         </div>
       </div>
     </div>
