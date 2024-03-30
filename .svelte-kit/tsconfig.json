@@ -1,6 +1,12 @@
 {
 	"compilerOptions": {
 		"paths": {
+			"$images": [
+				"../src/public/asset"
+			],
+			"$images/*": [
+				"../src/public/asset/*"
+			],
 			"$lib": [
 				"../src/lib"
 			],

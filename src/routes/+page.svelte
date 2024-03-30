@@ -1,9 +1,10 @@
-<script>
+<script lang="ts">
   import { fade, fly } from "svelte/transition";
   import { onMount, onDestroy } from "svelte";
   import Saos from "saos";
   let isOpenContent = false;
   let isLoading = true;
+  let queryParams: string = "";
 
   const toggleContent = () => {
     console.log("toggleContent");
@@ -36,6 +37,10 @@
 
   onMount(() => {
     updateCountdown(); // Update countdown saat komponen dimount
+
+    // Ambil query params dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    queryParams = urlParams.get("to")!; // Non-null assertion operator
   });
 
   onDestroy(() => {
@@ -51,14 +56,14 @@
 {#if !isOpenContent}
   <section
     class="banner px-5 py-5 h-screen"
-    style="background-image: url('/src/public/asset/CHE01431.jpg') !important; background-position: 40% 50%;
+    style="background-image: url('/asset/CHE01431.jpg') !important; background-position: 40% 50%;
   background-repeat: no-repeat;
   object-fit: cover;
   background-size: cover;
 }"
     transition:fly={{ y: -500, duration: 1000 }}
   >
-    <div class="head relative top-0 h-[75vh]">
+    <div class="head relative top-0 h-[65vh]">
       <div class="text-center text-white">
         <h4 class="py-5">The Wedding Of</h4>
         <h1 class="text-4xl">Windu & Siska</h1>
@@ -66,6 +71,9 @@
     </div>
     <div class="footer relative bottom-0 text-white">
       <div class="text-center">
+        <h1>
+          <p>{queryParams}</p>
+        </h1>
         <p class="py-5">
           Mohon maaf bila ada kesalahan pada penulisan nama/gelar
         </p>
@@ -85,7 +93,7 @@
     >
       <div
         class="head-content"
-        style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.54) 100%), url('/src/public/asset/CHE01295.jpg') !important; background-position: 40% 50%; height: 50vh;
+        style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.54) 100%), url('/asset/CHE01295.jpg') !important; background-position: 40% 50%; height: 50vh;
       background-size: cover;
       background-repeat: no-repeat;"
       >
@@ -102,7 +110,7 @@
         <div class="p-5">
           <img
             class="w-full"
-            src="/src/public/asset/CHE01244.jpg"
+            src="/asset/CHE01244.jpg"
             alt="Sunset in the mountains"
           />
 
@@ -148,7 +156,7 @@
           <div class="flex items-start justify-center py-5">
             <img
               class="rounded-xl w-[50%] h-full object-cover"
-              src="/src/public/asset/CHE01277.jpg"
+              src="/asset/CHE01277.jpg"
               alt="Extra large avatar"
             />
           </div>
@@ -179,7 +187,7 @@
           <div class="flex items-start justify-center py-5">
             <img
               class="rounded-xl w-[50%] h-full object-cover"
-              src="/src/public/asset/CHE01271.jpg"
+              src="/asset/CHE01271.jpg"
               alt="Extra large avatar"
             />
           </div>
@@ -222,7 +230,7 @@
 
       <div class="py-5">
         <div
-          style="background-image:linear-gradient(185deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.57) 100%), url('/src/public/asset/CHE01405.jpg') !important; background-position: 40% 50%;
+          style="background-image:linear-gradient(185deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.57) 100%), url('/asset/CHE01405.jpg') !important; background-position: 40% 50%;
         background-repeat: no-repeat;
         object-fit: cover;
         background-size: cover;
@@ -254,7 +262,7 @@
 
       <div class="py-5">
         <div
-          style="background-image:linear-gradient(185deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.57) 100%), url('/src/public/asset/CHE01320.jpg') !important; background-position: 40% 50%;
+          style="background-image:linear-gradient(185deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.57) 100%), url('/asset/CHE01320.jpg') !important; background-position: 40% 50%;
         background-repeat: no-repeat;
         object-fit: cover;
         background-size: cover;
@@ -303,7 +311,7 @@
         >
           <img
             class="w-full rounded-lg"
-            src="/src/public/asset/CHE01430.jpg"
+            src="/asset/CHE01430.jpg"
             alt="Sunset in the mountains"
           />
         </Saos>
@@ -379,7 +387,7 @@
             animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
           >
             <img
-              src="/src/public/asset/gallery/CHE01185_gallery1.jpeg"
+              src="/asset/gallery/CHE01185_gallery1.jpeg"
               alt="gallery 1"
               class="rounded-lg shadow-lg"
             />
@@ -388,7 +396,7 @@
             animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
           >
             <img
-              src="/src/public/asset/gallery/CHE01195_gallery2.jpeg"
+              src="/asset/gallery/CHE01195_gallery2.jpeg"
               alt="gallery 2"
               class="rounded-lg shadow-lg"
             />
@@ -397,7 +405,7 @@
             animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
           >
             <img
-              src="/src/public/asset/gallery/CHE01200_gallery3.jpeg"
+              src="/asset/gallery/CHE01200_gallery3.jpeg"
               alt="gallery 3"
               class="rounded-lg shadow-lg"
             />
@@ -406,7 +414,7 @@
             animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
           >
             <img
-              src="/src/public/asset/gallery/CHE01220_gallery4.jpeg"
+              src="/asset/gallery/CHE01220_gallery4.jpeg"
               alt="gallery 4"
               class="rounded-lg shadow-lg"
             />
@@ -416,7 +424,7 @@
             animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
           >
             <img
-              src="/src/public/asset/gallery/CHE01243_gallery5.jpeg"
+              src="/asset/gallery/CHE01243_gallery5.jpeg"
               alt="gallery 5"
               class="rounded-lg shadow-lg"
             />
@@ -426,7 +434,7 @@
             animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
           >
             <img
-              src="/src/public/asset/gallery/CHE01284_gallery6.jpeg"
+              src="/asset/gallery/CHE01284_gallery6.jpeg"
               alt="gallery 6"
               class="rounded-lg shadow-lg"
             />
@@ -436,7 +444,7 @@
             animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
           >
             <img
-              src="/src/public/asset/gallery/CHE01305_gallery8.jpeg"
+              src="/asset/gallery/CHE01305_gallery8.jpeg"
               alt="gallery 8"
               class="rounded-lg shadow-lg"
             />
@@ -446,7 +454,7 @@
             animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
           >
             <img
-              src="/src/public/asset/gallery/CHE01324_gallery7.jpeg"
+              src="/asset/gallery/CHE01324_gallery7.jpeg"
               alt="gallery 7"
               class="rounded-lg shadow-lg"
             />
@@ -456,7 +464,7 @@
             animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
           >
             <img
-              src="/src/public/asset/gallery/CHE01419_gallery9.jpeg"
+              src="/asset/gallery/CHE01419_gallery9.jpeg"
               alt="gallery 9"
               class="rounded-lg shadow-lg"
             />
