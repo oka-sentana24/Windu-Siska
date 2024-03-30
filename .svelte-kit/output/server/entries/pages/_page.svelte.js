@@ -4,7 +4,7 @@ const css = {
   map: null
 };
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let queryParams = { to: "" };
+  let queryParams = "";
   const updateCountdown = () => {
   };
   const interval = setInterval(updateCountdown, 1e3);
@@ -12,7 +12,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     clearInterval(interval);
   });
   $$result.css.add(css);
-  return `${$$result.head += `<!-- HEAD_svelte-8gb88t_START -->${$$result.title = `<title>Home</title>`, ""}<meta name="description" content="Svelte demo app"><!-- HEAD_svelte-8gb88t_END -->`, ""} ${`<section class="banner px-5 py-5 h-screen" style="background-image: url('/asset/CHE01431.jpg') !important; background-position: 40% 50%; background-repeat: no-repeat; object-fit: cover; background-size: cover; }"><div class="head relative top-0 h-[65vh]" data-svelte-h="svelte-1f6ve0k"><div class="text-center text-white"><h4 class="py-5">The Wedding Of</h4> <h1 class="text-4xl">Windu &amp; Siska</h1></div></div> <div class="footer relative bottom-0 text-white"><div class="text-center"><h1><p>${escape(queryParams.to)}</p></h1> <p class="py-5" data-svelte-h="svelte-xenhc2">Mohon maaf bila ada kesalahan pada penulisan nama/gelar</p> <button class="bg-white text-black rounded-lg px-5 py-4" data-svelte-h="svelte-1f12njs">Open Invitation</button></div></div></section>`}`;
+  return `${$$result.head += `<!-- HEAD_svelte-8gb88t_START -->${$$result.title = `<title>Home</title>`, ""}<meta name="description" content="Svelte demo app"><!-- HEAD_svelte-8gb88t_END -->`, ""} ${`<section class="banner px-5 py-5 h-screen" style="background-image: url('/asset/CHE01431.jpg') !important; background-position: 40% 50%; background-repeat: no-repeat; object-fit: cover; background-size: cover; }"><div class="head relative top-0 h-[65vh]" data-svelte-h="svelte-1f6ve0k"><div class="text-center text-white"><h4 class="py-5">The Wedding Of</h4> <h1 class="text-4xl">Windu &amp; Siska</h1></div></div> <div class="footer relative bottom-0 text-white"><div class="text-center"><h1><p>${escape(queryParams)}</p></h1> <p class="py-5" data-svelte-h="svelte-xenhc2">Mohon maaf bila ada kesalahan pada penulisan nama/gelar</p> <button class="bg-white text-black rounded-lg px-5 py-4" data-svelte-h="svelte-1f12njs">Open Invitation</button></div></div></section>`}`;
 });
 export {
   Page as default
