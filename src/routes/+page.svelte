@@ -1,16 +1,25 @@
 <script lang="ts">
   import { fade, fly } from "svelte/transition";
   import { onMount, onDestroy } from "svelte";
+  import { createClient } from "@supabase/supabase-js";
+  import { writable } from "svelte/store";
   import Saos from "saos";
-  let isOpenContent = false;
-  let isLoading = true;
-  let queryParams: string = "";
 
+  const rsvpData = writable<
+    { nama: string; status: string; pesan: string; created_at: Date }[]
+  >([]);
+
+  const currentPage = writable(1);
+  const pageSize = 5;
+  const totalPages = writable(1);
+  const isLoading = writable(true);
+
+  let isOpenContent = false;
+  let queryParams: string = "";
   const toggleContent = () => {
     console.log("toggleContent");
     isOpenContent = !isOpenContent;
   };
-
   let weddingDate = new Date("2024-04-14").getTime(); // Tanggal pernikahan
   let now = new Date().getTime(); // Waktu saat ini
   let timeLeft = weddingDate - now; // Selisih waktu antara sekarang dan tanggal pernikahan
@@ -34,6 +43,10 @@
   };
 
   const interval = setInterval(updateCountdown, 1000);
+  const refreshContent = () => {
+    // Add your logic here to refresh content
+    fetchRSVPData(); // For example, you can call fetchRSVPData to refresh RSVP data
+  };
 
   onMount(() => {
     updateCountdown(); // Update countdown saat komponen dimount
@@ -41,11 +54,131 @@
     // Ambil query params dari URL
     const urlParams = new URLSearchParams(window.location.search);
     queryParams = urlParams.get("to")!; // Non-null assertion operator
+
+    fetchRSVPData(); // Fetch RSVP data on mount
   });
 
   onDestroy(() => {
     clearInterval(interval); // Membersihkan interval saat komponen dihancurkan
   });
+
+  const supabaseUrl = "https://ngshwkayjjxfiidmwgyo.supabase.co";
+  const supabaseKey =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5nc2h3a2F5amp4ZmlpZG13Z3lvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTIyMzYyMjAsImV4cCI6MjAyNzgxMjIyMH0.mFE4aT-yeBQ_K8MR-UyaINhoUKfd-TyLUADEVH0vOmI";
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  let formData = {
+    nama: "",
+    status: "",
+    pesan: "",
+    created_at: new Date(),
+  };
+
+  const submitForm = async () => {
+    const nameInput = document.getElementById("name") as HTMLInputElement;
+    const statusInput = document.getElementById("hadir") as HTMLSelectElement;
+    const pesanInput = document.getElementById("pesan") as HTMLTextAreaElement;
+
+    formData = {
+      nama: nameInput.value,
+      status: statusInput.value,
+      pesan: pesanInput.value,
+      created_at: new Date(), // Add the created_at field with the current date
+    };
+
+    const { data, error } = await supabase.from("rsvp").insert([formData]);
+
+    if (error) {
+      console.error(error);
+    } else {
+      console.log("RSVP submitted successfully");
+      refreshContent();
+      // You can add any success handling here, like showing a success message
+    }
+  };
+
+  const fetchRSVPData = async () => {
+    isLoading.set(true);
+    const page = $currentPage;
+    const { data, error, count } = await supabase
+      .from("rsvp")
+      .select("*")
+      .range((page - 1) * pageSize, page * pageSize - 1)
+      .order("created_at", { ascending: false }); // Sort by descending order of created_at field
+
+    if (error) {
+      console.error(error);
+    } else {
+      const totalCount = count ?? 0;
+      const totalPagesValue = Math.ceil(totalCount / pageSize);
+      totalPages.set(totalPagesValue);
+      rsvpData.set(data);
+      isLoading.set(false);
+    }
+  };
+
+  const changePage = (page: number) => {
+    currentPage.set(page);
+    fetchRSVPData();
+  };
+
+  function formatRelativeDate(dateString: any) {
+    const date = new Date(dateString);
+
+    // Check if date is valid
+    if (isNaN(date.getTime())) {
+      return "Invalid date";
+    }
+
+    const now = new Date();
+    const diff = now.getTime() - date.getTime();
+
+    // Convert milliseconds to seconds
+    const seconds = Math.floor(diff / 1000);
+
+    // Define time intervals in seconds
+    const intervals = {
+      year: 31536000,
+      month: 2592000,
+      week: 604800,
+      day: 86400,
+      hour: 3600,
+      minute: 60,
+    };
+
+    // Find the appropriate time interval
+    for (const [interval, secondsPerInterval] of Object.entries(intervals)) {
+      const intervalCount = Math.floor(seconds / secondsPerInterval);
+      if (intervalCount >= 1) {
+        if (intervalCount === 1) {
+          return `Yesterday`;
+        } else if (intervalCount === 0) {
+          return `Today`;
+        } else {
+          // For older dates, return the actual date
+          const options = { year: "numeric", month: "short", day: "numeric" };
+          return date.toLocaleDateString("en-US", options);
+        }
+      }
+    }
+
+    // If the date is less than a minute ago
+    return "Just now";
+  }
+
+  let isAudioPlaying = true;
+  let audioPlayer: HTMLAudioElement;
+
+  const startAudio = () => {
+    audioPlayer.play();
+    isAudioPlaying = true;
+  };
+
+  const stopAudio = () => {
+    audioPlayer.pause();
+    audioPlayer.currentTime = 0; // Reset audio to start
+    isAudioPlaying = false;
+  };
 </script>
 
 <svelte:head>
@@ -87,6 +220,20 @@
     </div>
   </section>
 {:else}
+  <section>
+    <!-- Embedding Audio Player -->
+    <div class="audio-container relative hidden">
+      <audio
+        id="audioPlayer"
+        controls
+        autoplay
+        class="w-full"
+        bind:this={audioPlayer}
+      >
+        <source src="/musik/Sezairi-It-s-You.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+  </section>
   <section class="content">
     <div
       style="background-image: linear-gradient(180deg, #969696 0%, #353535 100%) !important;"
@@ -251,7 +398,7 @@
                 <span class="block text-center py-5">Pawiwahan</span>
                 <hr />
                 <div class="py-5">
-                  <p class="text-center">Rabu, 17 Januari 2024</p>
+                  <p class="text-center">Minggu, 14 April 2024</p>
                   <p class="text-center">12.00 Wita</p>
                 </div>
               </Saos>
@@ -479,7 +626,7 @@
       <Saos
         animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
       >
-        <h1 class="p-10">Rsvp</h1>
+        <h1 class="p-10">RSVP</h1>
       </Saos>
       <Saos
         animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
@@ -489,6 +636,113 @@
           berikut
         </p>
       </Saos>
+    </div>
+  </section>
+
+  <section class="px-5">
+    <form on:submit|preventDefault={submitForm}>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700"
+            >Nama</label
+          >
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="mt-1 p-2 block w-full border-gray-300 rounded-md"
+          />
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div>
+          <label for="hadir" class="block text-sm font-medium text-gray-700"
+            >Hadir</label
+          >
+          <select
+            id="hadir"
+            name="hadir"
+            class="mt-1 p-2 block w-full border-gray-300 rounded-md"
+          >
+            <option value="true">Ya</option>
+            <option value="false">Tidak</option>
+          </select>
+        </div>
+        <div>
+          <label for="pesan" class="block text-sm font-medium text-gray-700"
+            >Pesan</label
+          >
+          <textarea
+            id="pesan"
+            name="pesan"
+            class="mt-1 p-2 block w-full border-gray-300 rounded-md"
+          ></textarea>
+        </div>
+      </div>
+      <div class="mt-6">
+        <button
+          type="submit"
+          class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >Submit</button
+        >
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <div class="p-5">
+      {#if $rsvpData.length > 0}
+        <ul
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+        >
+          {#each $rsvpData.sort((a, b) => b.created_at - a.created_at) as rsvp, index}
+            <li>
+              <div class="bg-white shadow-md rounded-lg p-4">
+                <div class="flex items-center justify-between gap-4">
+                  <h2 id="rsvpName" class="font-semibold text-base">
+                    {rsvp.nama}
+                  </h2>
+                  <p class=" text-sm italic">
+                    {formatRelativeDate(rsvp.created_at)}
+                  </p>
+                </div>
+                <p id="rsvpMessage" class="text-gray-600 italic text-base py-2">
+                  "{rsvp.pesan}"
+                </p>
+
+                <p
+                  id="rsvpAttendance"
+                  class="mb-2 px-1 rounded-full py-2 text-center"
+                  style={rsvp.status
+                    ? "background-color: green; color: white; width: 100px;"
+                    : "background-color: red; color: white; width: 100px;"}
+                >
+                  {rsvp.status ? "Hadir" : "Tidak Hadir"}
+                </p>
+              </div>
+            </li>
+          {/each}
+        </ul>
+      {:else}
+        <p class="text-gray-600">No RSVP data available.</p>
+      {/if}
+    </div>
+    <div class="flex items-center justify-center space-x-4">
+      <button
+        class="flex items-center px-4 py-2 text-white bg-blue-500 rounded-md disabled:opacity-50"
+        on:click={() => changePage($currentPage - 1)}
+        disabled={$currentPage === 1}
+      >
+        Prev
+      </button>
+      <span class="text-gray-700">Page {$currentPage} of {$totalPages}</span>
+      <button
+        class="flex items-center px-4 py-2 text-white bg-blue-500 rounded-md disabled:opacity-50"
+        on:click={() => changePage($currentPage + 1)}
+        disabled={$currentPage === $totalPages}
+      >
+        Next
+      </button>
     </div>
   </section>
 {/if}

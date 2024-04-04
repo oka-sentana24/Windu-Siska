@@ -85,7 +85,7 @@
       "_client.js"
     ],
     "css": [
-      "_app/immutable/assets/_layout.BBV_nV-F.css"
+      "_app/immutable/assets/_layout.B-cy3bdO.css"
     ]
   },
   "src/routes/+page.svelte": {
@@ -94,7 +94,8 @@
     "src": "src/routes/+page.svelte",
     "isEntry": true,
     "imports": [
-      "_ssr.js"
+      "_ssr.js",
+      "_index2.js"
     ],
     "css": [
       "_app/immutable/assets/_page.C7X2bgY3.css"
