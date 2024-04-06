@@ -14,6 +14,12 @@
   const totalPages = writable(1);
   const isLoading = writable(true);
 
+  let showModal = false;
+
+  function toggleModal() {
+    showModal = !showModal;
+  }
+
   let isOpenContent = false;
   let queryParams: string = "";
   const toggleContent = () => {
@@ -440,7 +446,9 @@
                 <p class="text-center py-2">Br. Sema, Desa Bitera, Gianyar</p>
 
                 <button class=" bg-white text-black px-4 py-2 rounded-lg">
-                  Denah lokasi
+                  <a href="https://maps.app.goo.gl/QXvjqHDiSUdsQvTV8">
+                    Denah lokasi
+                  </a>
                 </button>
               </Saos>
             </div>
@@ -617,6 +625,86 @@
             />
           </Saos>
         </div>
+        <div class="px-5 bg-gray-500 text-center rounded-2xl text-white">
+          <div class="px-10 py-5">
+            <h1>Wedding Gift</h1>
+            <hr />
+          </div>
+          <div class="py-5">
+            <p>
+              Bagi Keluarga dan Sahabat <br />yang ingin mengirimkan hadiah,
+              <br /> silahkan mengirimkannya melalui :
+            </p>
+          </div>
+
+          <div class="py-5">
+            <button
+              on:click={toggleModal}
+              class="px-5 py-3 bg-white text-black w-52 rounded-2xl"
+              >Transfer</button
+            >
+          </div>
+
+          {#if showModal}
+            <div
+              class="fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-black bg-opacity-50"
+            >
+              <div class="relative bg-white rounded-lg w-80">
+                <div class="absolute top-0 right-0 p-2">
+                  <button
+                    class="text-black"
+                    aria-label="Close"
+                    on:click={toggleModal}
+                  >
+                    <svg
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
+                <div class="container mx-auto px-4 text-black py-10">
+                  <div class="text-center">
+                    <p class="mb-4">
+                      Silahkan transfer hadiah melalui nomor rekening maupun
+                      dompet digital berikut:
+                    </p>
+
+                    <div class="mb-8">
+                      <h2 class="font-extrabold text-xl mb-2">
+                        KADEK WINDU WIJAYA
+                      </h2>
+                      <img class="mx-auto" src="/asset/bca.jpg" alt="BCA" />
+                      <h2 class="font-extrabold">1350609705</h2>
+                    </div>
+
+                    <hr class="my-8" />
+
+                    <div class="mb-8">
+                      <h2 class="font-extrabold text-xl mb-2">
+                        NI KADEK SISKA
+                      </h2>
+                      <img
+                        class="mx-auto"
+                        src="/asset/mandiri.jpg"
+                        alt="MANDIRI"
+                      />
+                      <h2 class="font-extrabold">1350609705</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {/if}
+        </div>
       </div>
     </div>
   </section>
@@ -689,7 +777,7 @@
     </form>
   </section>
 
-  <section>
+  <section class="py-5">
     <div class="p-5">
       {#if $rsvpData.length > 0}
         <ul
@@ -745,6 +833,12 @@
       </button>
     </div>
   </section>
+
+  <footer class="bg-black py-4">
+    <div class="container mx-auto text-center">
+      <p class="text-white">&copy; 2024 Windu & Siska. All rights reserved.</p>
+    </div>
+  </footer>
 {/if}
 
 <style>
