@@ -697,7 +697,7 @@
                         src="/asset/mandiri.jpg"
                         alt="MANDIRI"
                       />
-                      <h2 class="font-extrabold">1350609705</h2>
+                      <h2 class="font-extrabold">1450015473115</h2>
                     </div>
                   </div>
                 </div>
