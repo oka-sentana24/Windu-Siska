@@ -9,7 +9,7 @@
   onMount(() => {
     setTimeout(() => {
       isPageLoading = true;
-    }, 3000); // Adjust the time as needed (in milliseconds)
+    }, 2000); // Adjust the time as needed (in milliseconds)
   });
 </script>
 
@@ -22,7 +22,9 @@
           class="text-center h-screen w-full items-center justify-center flex fixed top-0 left-0 bg-[#fffde7]"
           transition:fade={{ duration: 3000 }}
         >
-          <div class="absolute">Please Wait ...</div>
+          <div class="absolute">
+            <h1>Please Wait ...</h1>
+          </div>
         </div>
       {:else}
         <slot />
