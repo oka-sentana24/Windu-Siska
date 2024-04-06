@@ -405,7 +405,7 @@
                 <hr />
                 <div class="py-5">
                   <p class="text-center">Minggu, 14 April 2024</p>
-                  <p class="text-center">12.00 Wita</p>
+                  <p class="text-center">09.00 Wita</p>
                 </div>
               </Saos>
             </div>
