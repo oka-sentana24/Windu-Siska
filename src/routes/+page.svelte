@@ -356,7 +356,7 @@
             animation={"scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}
           >
             <p>Putri kedua dari pasangan</p>
-            <p>Ni Made Wandira & Ni Made Budiasih</p>
+            <p>I Made Wandira & Ni Made Budiasih</p>
             <p>Br.Kemenuh, Gianyar</p>
           </Saos>
         </div>
